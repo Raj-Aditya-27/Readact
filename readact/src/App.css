@@ -1,0 +1,56 @@
+/* Navbar-Section */
+
+.navbar{
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3%;
+  user-select: none;
+}
+
+.logo{
+  font-size: 2rem;
+  /* color: #1a2c52; */
+  /* color: #337ab7; */
+}
+
+.credential{
+  width: 20vw;
+  height: 5vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.login,.free-trial{
+  all: unset;
+  width: 40%;
+  height: 80%;
+  padding: 2%;
+}
+
+.login{
+  border-right: 1px solid gray;
+  text-align: right;
+  padding-right: 3%;
+  font-weight: 700;
+}
+
+.free-trial{
+  border-radius: 10px;
+  text-align: center;
+  /* background-color: #1a2c52; */
+  background-color: #337ab7;
+  border-color: #337ab7;
+  color: white;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.free-trial:hover{
+  background-color: #3379b7e8;
+}
+
+
+/* Body-Section */
