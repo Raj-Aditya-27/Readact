@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Body from './components/Body'
-import './App.css'
+import './css/App.css'
+import "./css/Responsive.css"
 
 function App() {
   return (

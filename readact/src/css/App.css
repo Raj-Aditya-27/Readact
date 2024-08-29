@@ -105,7 +105,7 @@
 
 .scale {
   width: 25%;
-  height:7%;
+  height: 7%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -123,7 +123,9 @@
   font-weight: bolder;
 }
 
-.low:hover,.medium:hover,.high:hover{
+.low:hover,
+.medium:hover,
+.high:hover {
   background-color: #ffc107e0;
 }
 
@@ -140,9 +142,9 @@
   color: #ffc107;
 }
 
-.bi-filetype-pdf {
+/* .bi-filetype-pdf {
   color: white;
-}
+} */
 
 .file-input {
   display: none; /* Hide the default file input */
@@ -150,14 +152,16 @@
 .file-input-label {
   display: inline-block;
   padding: 10px 20px;
-  background-color: white;
-  color: black;
   border-radius: 5px;
   cursor: pointer;
-  text-align: center;
+  background-color: white;
   font-weight: bolder;
 }
-
 .file-input-label:hover {
   background-color: rgba(255, 255, 255, 0.873);
+}
+.file-name {
+  margin-left: 10px;
+  font-style: italic;
+  color: white;
 }
