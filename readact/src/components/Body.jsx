@@ -5,11 +5,13 @@ function Body() {
   const [isFileChosen, setIsFileChosen] = useState(false);
   const [selectedScale, setSelectedScale] = useState("high"); // Set "high" as default
   const [homePage, setHomePage] = useState(true);
+  const [file, setFile] = useState(null); // To store the chosen file
 
   function handleFileChoose(event) {
-    const file = event.target.files[0];
-    if (file) {
-      setFileName(file.name);
+    const chosenFile = event.target.files[0];
+    if (chosenFile) {
+      setFile(chosenFile);
+      setFileName(chosenFile.name);
       setIsFileChosen(true);
     } else {
       setFileName("No file chosen");
@@ -22,10 +24,48 @@ function Body() {
     setIsFileChosen(false);
     document.getElementById("file-input").value = ""; // Reset the input value
     setSelectedScale("high");
+    setFile(null); // Clear the stored file
   }
 
   function handleScaleChange(scale) {
     setSelectedScale(scale);
+  }
+
+  function handleConvert() {
+
+    console.log("Enter");
+
+    if (!file || !isFileChosen) {
+      alert("Please choose a file and scale.");
+      return;
+    }
+    console.log("After condition");
+    console.log("File :",file);
+    console.log("Scale: ",selectedScale);
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("level", selectedScale);
+
+    console.log("After formData");
+
+    fetch("http://localhost:5000/analyze", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        console.log("Enter blob");
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "redacted_file.pdf"); // File name to download
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+        setHomePage(false); // Navigate to the next page
+      })
+      .catch((error) => console.error("Error:", error));
   }
 
   return (
@@ -61,7 +101,7 @@ function Body() {
                 <button
                   className="convert"
                   style={{ visibility: isFileChosen ? "visible" : "hidden" }}
-                  onClick={()=>setHomePage(false)}
+                  onClick={handleConvert}
                 >
                   CONVERT
                 </button>
@@ -99,8 +139,10 @@ function Body() {
 
       {!homePage && (
         <>
-          <button className="convert">DOWNLOAD</button>
-          <button className="convert" onClick={()=>setHomePage(true)}>BACK TO HOME PAGE</button>
+          <button className="convert" onClick={handleConvert}>DOWNLOAD AGAIN</button>
+          <button className="convert" onClick={() => setHomePage(true)}>
+            BACK TO HOME PAGE
+          </button>
         </>
       )}
     </div>
