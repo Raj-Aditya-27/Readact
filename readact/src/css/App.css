@@ -165,3 +165,27 @@
   font-style: italic;
   color: white;
 }
+
+/* Additional features */
+
+.bi-x-circle{
+  cursor: pointer;
+}
+
+.convert{
+  height: 12%;
+  width: 17%;
+  background-color: #ffc107;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-weight: bolder;
+}
+
+.convert:hover{
+  background-color: #ffc107e0;
+}
+
+.selected {
+  border: 1px dashed black;
+}
